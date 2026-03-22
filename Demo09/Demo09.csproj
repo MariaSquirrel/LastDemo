@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <ApplicationIcon>Resource\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resource\B538G6.jpg" />
+    <None Remove="Resource\D648N7.jpg" />
+    <None Remove="Resource\D830R5.jpg" />
+    <None Remove="Resource\E324U7.jpg" />
+    <None Remove="Resource\F735B6.jpg" />
+    <None Remove="Resource\F746E6.jpg" />
+    <None Remove="Resource\F937G4.jpg" />
+    <None Remove="Resource\G403T5.jpg" />
+    <None Remove="Resource\G598Y6.jpg" />
+    <None Remove="Resource\picture.png" />
+    <None Remove="Resource\А112Т4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Resource\B538G6.jpg" />
+    <AvaloniaResource Include="Resource\D648N7.jpg" />
+    <AvaloniaResource Include="Resource\D830R5.jpg" />
+    <AvaloniaResource Include="Resource\E324U7.jpg" />
+    <AvaloniaResource Include="Resource\F735B6.jpg" />
+    <AvaloniaResource Include="Resource\F746E6.jpg" />
+    <AvaloniaResource Include="Resource\F937G4.jpg" />
+    <AvaloniaResource Include="Resource\G403T5.jpg" />
+    <AvaloniaResource Include="Resource\G598Y6.jpg" />
+    <AvaloniaResource Include="Resource\picture.png" />
+    <AvaloniaResource Include="Resource\А112Т4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resource\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.5" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.5" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.5" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.5" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.3.5">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="MessageBox.Avalonia" Version="3.3.1.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="5.3.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.3.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="5.3.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
+  </ItemGroup>
+</Project>
