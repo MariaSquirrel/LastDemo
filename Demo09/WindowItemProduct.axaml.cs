@@ -266,38 +266,16 @@ public partial class WindowItemProduct : Window
     {
         try
         {
-            // Формируем путь для сохранения
-            string destinationPath = Path.Combine(_resourcesPath, $"{articul}.jpg");
+            string extension = Path.GetExtension(sourceImagePath).ToLower();
+            string destinationPath = Path.Combine(_resourcesPath, $"{articul}{extension}");
 
-            // Копируем файл (конвертируем в jpeg если нужно)
             if (File.Exists(destinationPath))
             {
                 File.Delete(destinationPath);
             }
 
-            // Конвертируем в jpeg если это другой формат
-            string extension = Path.GetExtension(sourceImagePath).ToLower();
-            if (extension == ".jpg" || extension == ".jpeg")
-            {
-                // Просто копируем
-                File.Copy(sourceImagePath, destinationPath);
-            }
-            else
-            {
-                // Конвертируем в jpeg с помощью Avalonia
-                using (var sourceStream = File.OpenRead(sourceImagePath))
-                {
-                    var bitmap = new Bitmap(sourceStream);
+            File.Copy(sourceImagePath, destinationPath);
 
-                    // Сохраняем как jpeg
-                    using (var destStream = File.Create(destinationPath))
-                    {
-                        bitmap.Save(destStream);
-                    }
-                }
-            }
-
-            // Обновляем изображение в интерфейсе
             LoadProductImage(articul);
         }
         catch (Exception ex)
