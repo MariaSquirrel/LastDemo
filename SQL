@@ -1,0 +1,85 @@
+create table demo09.User(
+id Serial primary key,
+Name varchar(100) not null,
+Login varchar(100) not null,
+password varchar(100) not null,
+Role_id int references demo09.Role(id)
+);
+
+create table demo09.Role(
+id Serial primary key,
+Name varchar(100) not null
+);
+
+create table demo09.PVZ(
+id Serial primary key,
+Name varchar(200) not null
+);
+
+create table demo09.manufacturer(
+id Serial primary key,
+Name varchar(200) not null
+);
+
+create table demo09.supplier(
+id Serial primary key,
+Name varchar(200) not null
+);
+
+create table demo09.unit(
+id Serial primary key,
+Name varchar(200) not null
+);
+
+create table demo09.Category(
+id Serial primary key,
+Name varchar(200) not null
+);
+
+
+create table demo09.Product(
+id Serial primary key,
+Articul varchar(100) not null unique,
+Name varchar(200) not null,
+Unit int references demo09.Category(id) default 'шт',
+Prise numeric(10,2) not null check (Prise >= 0),  
+Sale numeric(10,2) default 0 check (Sale >= 0 and Sale <= 100),  
+MaxSale numeric(10,2) default 0 check (MaxSale >= 0 and MaxSale <= 100),
+manufacturer_id int references demo09.manufacturer(id),
+supplier_id int references demo09.supplier(id),
+Category_id int references demo09.Category(id),
+Count numeric default 0 check (Count >= 0), 
+Description text,
+PhotoPath varchar(500)
+);
+
+create table demo09.Client(
+id Serial primary key,
+Name varchar(200) not null
+);
+
+create table demo09.Status(
+id Serial primary key,
+Name varchar(200) not null
+);
+
+
+create table demo09.Order_Product(
+    Order_id int references demo09.Order(id) on delete cascade,
+    Product_id int references demo09.Product(id),
+    Quantity int not null,           
+    primary key (Order_id, Product_id)
+);
+
+
+create table demo09.Order(
+id Serial primary key,
+NumberOrder varchar(200) not null,
+DataCreate timestamp default now(),
+DateDeliver timestamp,
+PVZ_id int references demo09.PVZ(id),
+Client_id int references demo09.Client(id),
+CodeGive varchar(40),
+Status_id int references demo09.Status(id),
+User_id int references demo09.User(id)
+);
